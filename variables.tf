@@ -14,13 +14,16 @@ variable "pgp_key" {
 }
 
 variable "policy_statements" {
-  default = {}
+  type    = list(any)
+  default = null
 }
 
 variable "policy_arns" {
-  default = []
+  type    = set(string)
+  default = null
 }
 
 variable "assume_role_arns" {
-  default = []
+  type    = set(string)
+  default = null
 }
