@@ -20,7 +20,7 @@ variable "policy_statements" {
 
 variable "policy_arns" {
   type    = set(string)
-  default = null
+  default = []
 }
 
 variable "assume_role_arns" {
