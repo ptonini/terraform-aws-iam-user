@@ -13,7 +13,7 @@ variable "pgp_key" {
   default = null
 }
 
-variable "policy_statements" {
+variable "policy_statement" {
   type    = list(any)
   default = null
 }

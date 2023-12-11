@@ -9,24 +9,15 @@ resource "aws_iam_access_key" "this" {
 }
 
 resource "aws_iam_user_policy" "this" {
-  count = var.policy_statements == null ? 0 : 1
-  user  = aws_iam_user.this.name
-  policy = jsonencode({
-    Version   = "2012-10-17"
-    Statement = var.policy_statements
-  })
-}
-
-resource "aws_iam_user_policy" "assume_roles" {
-  count = var.assume_role_arns == null ? 0 : 1
+  count = var.policy_statement == null ? 0 : 1
   user  = aws_iam_user.this.name
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [for arn in var.assume_role_arns : {
+    Statement = concat(var.policy_statement, [for arn in var.assume_role_arns : {
       Effect   = "Allow",
       Action   = ["sts:AssumeRole"],
       Resource = arn
-    }]
+    }])
   })
 }
 
